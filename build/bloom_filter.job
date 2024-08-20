@@ -1,0 +1,27 @@
+#!/bin/bash
+#SBATCH --job-name=bloom_filter
+#SBATCH --time=00:10:00
+#SBATCH --mem=16G
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=16
+#SBATCH --output=bloom_filter_parallel.%j.out
+#SBATCH --partition=defq
+
+# Change to the directory containing the Makefile
+cd ../build
+
+# Compile the program
+make clean
+make
+
+# Set the number of OpenMP threads
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+# Run the program with murmurhash3
+./bloom_filter_parallel murmurhash3 ../data/LITTLE_WOMEN.txt ../data/MOBY_DICK.txt ../data/SHAKESPEARE.txt
+
+# Run the program with sha256
+./bloom_filter_parallel sha256 ../data/LITTLE_WOMEN.txt ../data/MOBY_DICK.txt ../data/SHAKESPEARE.txt
+
+# End of job
+exit 0
