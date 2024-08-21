@@ -64,6 +64,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Acknowledgments
 
-MurmurHash3 implementation by Joseph Werle.
+MurmurHash3 implementation by [Joseph Werle](https://github.com/jwerle/murmurhash.c).
 
-SHA-256 implementation by Brad Conte.
+SHA-256 implementation by [Brad Conte](https://github.com/B-Con/crypto-algorithms).
