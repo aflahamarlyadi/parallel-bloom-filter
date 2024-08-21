@@ -1,4 +1,4 @@
-# parallel-bloom-filter
+# Parallel Bloom Filter
 
 ## Overview
 
@@ -6,45 +6,40 @@ This repository contains the implementation of Bloom filter in both serial and p
 
 ## Directory
 
-### data/
+```data/``` contains sample text files used for testing the Bloom filter implementations.
 
-This directory contains sample text files used for testing the Bloom filter implementations.
 
-Notes:
-* The implementations support multiple insert files and a single query file named query.txt.
-* The insert files must be preprocessed such that each line contains a word.
-* The query file must be preprocessed such that each line contains a word and its label separated by a space.
 
-### src/
+```src/``` contains the source code for both the serial and parallel implementations, along with the implementations of the MurmurHash3 and SHA-256 hashing algorithms.
 
-This directory contains the source code for both the serial and parallel implementations, along with the implementations of the MurmurHash3 and SHA-256 hashing algorithms.
+```include/``` contains the header files corresponding to the source files.
 
-### include/
-
-This directory contains header files corresponding to the source files.
-
-### build/
-
-This directory contains the Makefile for compiling the project and the SLURM job script for running the parallel implementation on a cluster.
+```build/``` contains the Makefile for compiling the project and the SLURM job script for running the parallel implementation on a cluster.
 
 ## Usage
 
+### Preprocessing
+
+The implementations support multiple insert files and a single query file named ```query.txt```.
+
+* **Insert files**: Each line contains a single word.
+
+* **Query file**: Each line contains a word and its label separated by a space.
+
 ### Compiling
 
-To compile both the serial and parallel implementations, navigate to the build/ directory and run:
+To compile both the serial and parallel implementations, navigate to the build/ directory and run: ```make```
 
-```make```
-
-This will generate two binaries: bloom_filter_serial and bloom_filter_parallel.
+This will generate two binaries: ```bloom_filter_serial``` and ```bloom_filter_parallel```.
 
 ### Running
 
 You can run the serial or parallel Bloom filter using the following commands:
 
 ```
-./bloom_filter_serial <hash_function> <file1> <file2> <file3>
+./bloom_filter_serial <hash_function> <insert_file1> ... <insert_fileN>
 
-./bloom_filter_parallel <hash_function> <file1> <file2> <file3>
+./bloom_filter_parallel <hash_function> <insert_file1> ... <insert_fileN>
 ```
 
 For example:
